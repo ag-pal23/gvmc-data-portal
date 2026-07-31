@@ -19,20 +19,11 @@
 }
 
 .card {
-  background: var(--liquid-surface);
-  backdrop-filter: blur(var(--liquid-blur));
-  -webkit-backdrop-filter: blur(var(--liquid-blur));
-  border: 1px solid var(--liquid-border);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-light);
   border-radius: var(--radius-lg);
   padding: var(--space-6);
   margin-bottom: var(--space-6);
-  box-shadow: var(--liquid-shadow), var(--liquid-inset-shadow);
-  transition: transform var(--transition-fast), box-shadow var(--transition-fast), border-color var(--transition-fast);
-}
-.card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--liquid-shadow-hover), var(--liquid-inset-shadow);
-  border-color: var(--liquid-border-accent);
 }
 
 .cardTitle {

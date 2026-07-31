@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Search, Database, Clock, Download, FileText } from 'lucide-react';
 import { datasets } from '@/data/mock';
 import styles from './page.module.css';
+import Typewriter from '@/components/atoms/Typewriter/Typewriter';
 
 const categories = [...new Set(datasets.map(d => d.category))];
 const formats = ['CSV', 'JSON', 'GeoJSON', 'API'];
@@ -57,8 +58,12 @@ export default function DatasetsPage() {
   return (
     <div className={styles.page}>
       <div className={styles.header}>
-        <h1 className={styles.title}>Open Datasets</h1>
-        <p className={styles.subtitle}>Browse, search, and download {datasets.length} civic datasets from Visakhapatnam.</p>
+        <h1 className={styles.title}>
+          <Typewriter text="Open Datasets" speed={40} />
+        </h1>
+        <p className={styles.subtitle}>
+          <Typewriter text={`Browse, search, and download ${datasets.length} civic datasets from Visakhapatnam.`} speed={15} delay={600} showCursor={false} />
+        </p>
       </div>
 
       <div className={styles.searchRow}>
@@ -114,8 +119,8 @@ export default function DatasetsPage() {
               <p className={styles.cardDesc}>{ds.description}</p>
               <div className={styles.cardMeta}>
                 <span className={styles.metaItem}><Clock size={12} /> {timeAgo(ds.last_updated)}</span>
-                <span className={styles.metaItem}><FileText size={12} /> {ds.row_count.toLocaleString()} rows</span>
-                <span className={styles.metaItem}><Download size={12} /> {ds.downloads.toLocaleString()}</span>
+                <span className={styles.metaItem}><FileText size={12} /> {ds.row_count.toString()} rows</span>
+                <span className={styles.metaItem}><Download size={12} /> {ds.downloads.toString()}</span>
                 {ds.format.map(f => (
                   <span key={f} className={formatBadgeClass(f)}>{f}</span>
                 ))}

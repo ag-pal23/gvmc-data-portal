@@ -37,21 +37,18 @@
   filter: blur(120px);
   opacity: 0.4;
   z-index: 0;
-  animation: morphBlob 16s ease-in-out infinite;
 }
 
 .heroGlow1 {
   top: -200px;
   left: -100px;
   background: #0B5FFF;
-  animation-delay: 0s;
 }
 
 .heroGlow2 {
   bottom: -200px;
   right: -100px;
   background: #0E9F6E;
-  animation-delay: -5s;
 }
 
 .heroGlow3 {
@@ -62,7 +59,6 @@
   width: 400px;
   height: 400px;
   opacity: 0.15;
-  animation-delay: -10s;
 }
 
 .badge {
@@ -70,17 +66,14 @@
   align-items: center;
   gap: var(--space-2);
   padding: var(--space-1) var(--space-4);
-  background: var(--liquid-surface);
-  backdrop-filter: blur(var(--liquid-blur));
-  -webkit-backdrop-filter: blur(var(--liquid-blur));
-  border: 1px solid var(--liquid-border);
+  background: rgba(11, 95, 255, 0.08);
+  border: 1px solid rgba(11, 95, 255, 0.15);
   border-radius: var(--radius-full);
   font-size: var(--text-sm);
   font-weight: var(--weight-medium);
   color: var(--color-primary);
   margin-bottom: var(--space-6);
   animation: fadeIn 0.6s ease forwards;
-  box-shadow: var(--liquid-inset-shadow);
 }
 
 .title {
@@ -116,16 +109,12 @@
   justify-content: center;
 }
 
-/* --- Stats Bar (Liquid Glass) --- */
+/* --- Stats Bar --- */
 .statsBar {
-  background: var(--liquid-surface);
-  backdrop-filter: blur(var(--liquid-blur-heavy));
-  -webkit-backdrop-filter: blur(var(--liquid-blur-heavy));
-  border-top: 1px solid var(--liquid-border);
-  border-bottom: 1px solid var(--liquid-border);
+  background: var(--color-bg);
+  border-top: 1px solid var(--color-border-light);
+  border-bottom: 1px solid var(--color-border-light);
   padding: var(--space-8) var(--space-6);
-  box-shadow: var(--liquid-shadow), var(--liquid-inset-shadow);
-  animation: borderFlow 10s ease infinite;
 }
 
 .statsInner {
@@ -190,51 +179,25 @@
 .featureCard {
   padding: var(--space-6);
   border-radius: var(--radius-lg);
-  border: 1px solid var(--liquid-border);
-  background: var(--liquid-surface);
-  backdrop-filter: blur(var(--liquid-blur));
-  -webkit-backdrop-filter: blur(var(--liquid-blur));
-  box-shadow: var(--liquid-shadow), var(--liquid-inset-shadow);
-  transition:
-    transform var(--transition-normal),
-    box-shadow var(--transition-normal),
-    border-color var(--transition-normal);
+  border: 1px solid var(--color-border-light);
+  background: var(--color-bg);
+  transition: all var(--transition-normal);
   cursor: pointer;
   text-decoration: none;
   color: var(--color-text);
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Liquid shimmer on cards */
-.featureCard::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 60%;
-  height: 100%;
-  background: linear-gradient(
-    105deg,
-    transparent 40%,
-    rgba(255, 255, 255, 0.08) 50%,
-    transparent 60%
-  );
-  transition: left 0.6s ease;
-  pointer-events: none;
-}
-
-.featureCard:hover::before {
-  left: 150%;
+  display: block;
 }
 
 .featureCard:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--liquid-shadow-hover), var(--liquid-inset-shadow);
-  border-color: var(--liquid-border-accent);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary);
   text-decoration: none;
+}
+
+.featureCard:hover .featureIcon {
+  transform: scale(1.1) rotate(2deg);
+  box-shadow: 0 0 16px rgba(11, 95, 255, 0.25);
 }
 
 .featureIcon {
@@ -246,7 +209,7 @@
   justify-content: center;
   margin-bottom: var(--space-4);
   font-size: 1.5rem;
-  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.4);
+  transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.25s ease;
 }
 
 .featureTitle {
@@ -264,7 +227,7 @@
 /* --- Personas --- */
 .personas {
   padding: var(--space-16) var(--space-6);
-  background: transparent;
+  background: var(--color-bg-alt);
 }
 
 .personasInner {
@@ -279,52 +242,28 @@
 }
 
 .personaCard {
-  background: var(--liquid-surface);
-  backdrop-filter: blur(var(--liquid-blur));
-  -webkit-backdrop-filter: blur(var(--liquid-blur));
+  background: var(--color-bg);
   border-radius: var(--radius-lg);
   padding: var(--space-6);
-  border: 1px solid var(--liquid-border);
-  box-shadow: var(--liquid-shadow), var(--liquid-inset-shadow);
+  border: 1px solid var(--color-border-light);
   text-align: center;
-  transition:
-    transform var(--transition-normal),
-    box-shadow var(--transition-normal),
-    border-color var(--transition-normal);
-  position: relative;
-  overflow: hidden;
-}
-
-/* Liquid glow orb behind persona card on hover */
-.personaCard::after {
-  content: '';
-  position: absolute;
-  bottom: -30%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 80%;
-  height: 60%;
-  background: radial-gradient(circle, var(--liquid-glow-secondary) 0%, transparent 70%);
-  opacity: 0;
-  transition: opacity var(--transition-normal);
-  pointer-events: none;
-  border-radius: 50%;
-  filter: blur(20px);
+  transition: all var(--transition-normal);
 }
 
 .personaCard:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--liquid-shadow-hover), var(--liquid-inset-shadow);
-  border-color: rgba(14, 159, 110, 0.25);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
 }
 
-.personaCard:hover::after {
-  opacity: 1;
+.personaCard:hover .personaEmoji {
+  transform: scale(1.2) translateY(-4px);
 }
 
 .personaEmoji {
   font-size: 2.5rem;
   margin-bottom: var(--space-4);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  display: inline-block;
 }
 
 .personaTitle {

@@ -8,6 +8,9 @@ import {
 } from 'lucide-react';
 import styles from './page.module.css';
 import GlobeIntro from '@/components/organisms/GlobeIntro/GlobeIntro';
+import Typewriter from '@/components/atoms/Typewriter/Typewriter';
+import LoginPortal from '@/components/organisms/LoginPortal/LoginPortal';
+
 
 const features = [
   {
@@ -69,6 +72,7 @@ const personas = [
 
 export default function LandingPage() {
   const [entered, setEntered] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
 
   const appUiStyle: React.CSSProperties = {
     opacity: entered ? 1 : 0,
@@ -83,8 +87,16 @@ export default function LandingPage() {
   return (
     <>
       {/* 3D Interactive Globe Intro Walkthrough */}
-      {!entered && (
-        <GlobeIntro onEnter={() => setEntered(true)} />
+      {!entered && !showLogin && (
+        <GlobeIntro onEnter={() => setShowLogin(true)} />
+      )}
+
+      {/* Frosted Glass Login Portal Overlay */}
+      {showLogin && (
+        <LoginPortal onLoginSuccess={() => {
+          setShowLogin(false);
+          setEntered(true);
+        }} />
       )}
 
       {/* Main UI layout container */}
@@ -102,13 +114,18 @@ export default function LandingPage() {
               Powered by AI · Open Data · Real-time Analytics
             </div>
             <h1 className={styles.title}>
-              Unlock Vizag&apos;s Data.{' '}
-              <span className={styles.titleGradient}>Empower Your City.</span>
+              <Typewriter text="Unlock Vizag's Data. " speed={30} showCursor={false} />
+              <span className={styles.titleGradient}>
+                <Typewriter text="Empower Your City." speed={30} delay={600} showCursor={true} />
+              </span>
             </h1>
             <p className={styles.subtitle}>
-              Explore Visakhapatnam&apos;s open civic data through interactive maps,
-              AI-powered insights, and predictive analytics — built for citizens,
-              researchers, startups, and city officials.
+              <Typewriter 
+                text="Explore Visakhapatnam's open civic data through interactive maps, AI-powered insights, and predictive analytics — built for citizens, researchers, startups, and city officials." 
+                speed={10} 
+                delay={1600} 
+                showCursor={false} 
+              />
             </p>
             <div className={styles.ctas}>
               <Link

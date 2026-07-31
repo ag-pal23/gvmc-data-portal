@@ -57,12 +57,9 @@
 
 .chip {
   padding: var(--space-2) var(--space-4);
-  background: var(--liquid-surface);
-  backdrop-filter: blur(var(--liquid-blur));
-  -webkit-backdrop-filter: blur(var(--liquid-blur));
-  border: 1px solid var(--liquid-border);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-full);
-  box-shadow: var(--liquid-shadow), var(--liquid-inset-shadow);
   font-size: var(--text-sm);
   color: var(--color-text);
   cursor: pointer;
@@ -119,22 +116,15 @@
 }
 
 .bubbleAssistant {
-  background: var(--liquid-surface);
-  backdrop-filter: blur(var(--liquid-blur));
-  -webkit-backdrop-filter: blur(var(--liquid-blur));
-  border: 1px solid var(--liquid-border);
-  box-shadow: var(--liquid-shadow), var(--liquid-inset-shadow);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-light);
   border-radius: var(--radius-lg) var(--radius-lg) var(--radius-lg) var(--radius-sm);
 }
 
 .bubbleUser {
-  background: linear-gradient(135deg, rgba(11, 95, 255, 0.9), rgba(14, 159, 110, 0.9));
-  backdrop-filter: blur(var(--liquid-blur));
-  -webkit-backdrop-filter: blur(var(--liquid-blur));
+  background: var(--color-primary);
   color: white;
   border-radius: var(--radius-lg) var(--radius-lg) var(--radius-sm) var(--radius-lg);
-  box-shadow: 0 4px 15px rgba(11, 95, 255, 0.3), var(--liquid-inset-shadow);
-  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .bubbleContent p {
@@ -245,11 +235,8 @@
 /* --- Input Area --- */
 .inputArea {
   padding: var(--space-4) var(--space-6);
-  background: var(--liquid-surface-strong);
-  backdrop-filter: blur(var(--liquid-blur-heavy));
-  -webkit-backdrop-filter: blur(var(--liquid-blur-heavy));
-  border-top: 1px solid var(--liquid-border);
-  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.05);
+  background: var(--color-bg);
+  border-top: 1px solid var(--color-border-light);
 }
 
 .inputInner {

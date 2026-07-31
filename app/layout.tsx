@@ -22,6 +22,11 @@ export default function RootLayout({
         <main id="main-content">
           {children}
         </main>
+        <footer className="site-footer">
+          <div className="container">
+            GVMC – Official Government Portal
+          </div>
+        </footer>
       </body>
     </html>
   );

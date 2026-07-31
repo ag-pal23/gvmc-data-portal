@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Sparkles, Send, ThumbsUp, ThumbsDown, BookOpen, BarChart3 } from 'lucide-react';
 import { aiResponses, type AIResponse } from '@/data/mock';
 import styles from './page.module.css';
+import Typewriter from '@/components/atoms/Typewriter/Typewriter';
 
 const promptSuggestions = [
   "What is the water supply trend in Ward 12 this month?",
@@ -113,15 +114,19 @@ export default function AssistantPage() {
               </div>
               <div className={`${styles.bubble} ${msg.role === 'user' ? styles.bubbleUser : styles.bubbleAssistant}`}>
                 <div className={styles.bubbleContent}>
-                  {msg.content.split('\n').map((line, i) => (
-                    <p key={i}>
-                      {line.split(/(\*\*.*?\*\*)/).map((part, j) =>
-                        part.startsWith('**') && part.endsWith('**')
-                          ? <strong key={j}>{part.slice(2, -2)}</strong>
-                          : part
-                      )}
-                    </p>
-                  ))}
+                  {idx === messages.length - 1 && msg.role === 'assistant' ? (
+                    <Typewriter text={msg.content} speed={10} showCursor={true} />
+                  ) : (
+                    msg.content.split('\n').map((line, i) => (
+                      <p key={i}>
+                        {line.split(/(\*\*.*?\*\*)/).map((part, j) =>
+                          part.startsWith('**') && part.endsWith('**')
+                            ? <strong key={j}>{part.slice(2, -2)}</strong>
+                            : part
+                        )}
+                      </p>
+                    ))
+                  )}
                 </div>
 
                 {msg.response && (

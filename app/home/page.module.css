@@ -70,49 +70,20 @@
 }
 
 .kpiCard {
-  background: var(--liquid-surface);
-  backdrop-filter: blur(var(--liquid-blur));
-  -webkit-backdrop-filter: blur(var(--liquid-blur));
-  border: 1px solid var(--liquid-border);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-light);
   border-radius: var(--radius-lg);
   padding: var(--space-5);
   display: flex;
   align-items: center;
   gap: var(--space-4);
   position: relative;
-  box-shadow: var(--liquid-shadow), var(--liquid-inset-shadow);
-  transition:
-    transform var(--transition-fast),
-    box-shadow var(--transition-fast),
-    border-color var(--transition-fast);
-  overflow: hidden;
-}
-
-.kpiCard::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 50%;
-  height: 100%;
-  background: linear-gradient(
-    105deg,
-    transparent 40%,
-    rgba(255, 255, 255, 0.07) 50%,
-    transparent 60%
-  );
-  transition: left 0.5s ease;
-  pointer-events: none;
-}
-
-.kpiCard:hover::before {
-  left: 150%;
+  transition: all var(--transition-fast);
 }
 
 .kpiCard:hover {
   transform: translateY(-2px);
-  box-shadow: var(--liquid-shadow-hover), var(--liquid-inset-shadow);
-  border-color: var(--liquid-border-accent);
+  box-shadow: var(--shadow-md);
 }
 
 .kpiIcon {
@@ -170,23 +141,10 @@
 }
 
 .sectionCard {
-  background: var(--liquid-surface);
-  backdrop-filter: blur(var(--liquid-blur));
-  -webkit-backdrop-filter: blur(var(--liquid-blur));
-  border: 1px solid var(--liquid-border);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border-light);
   border-radius: var(--radius-lg);
   padding: var(--space-6);
-  box-shadow: var(--liquid-shadow), var(--liquid-inset-shadow);
-  transition:
-    border-color var(--transition-normal),
-    box-shadow var(--transition-normal);
-  position: relative;
-  overflow: hidden;
-}
-
-.sectionCard:hover {
-  border-color: var(--liquid-border-accent);
-  box-shadow: var(--liquid-shadow-hover), var(--liquid-inset-shadow);
 }
 
 .sectionTitle {
@@ -336,9 +294,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: var(--liquid-surface);
-  backdrop-filter: blur(var(--liquid-blur));
-  -webkit-backdrop-filter: blur(var(--liquid-blur));
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(1px);
   text-align: center;
   padding: var(--space-4);
 }

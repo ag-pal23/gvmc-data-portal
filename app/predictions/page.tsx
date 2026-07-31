@@ -4,6 +4,7 @@ import React, { useState, useMemo } from 'react';
 import { TrendingUp, Info } from 'lucide-react';
 import { generateTrafficForecast } from '@/data/mock';
 import styles from './page.module.css';
+import Typewriter from '@/components/atoms/Typewriter/Typewriter';
 
 export default function PredictionsPage() {
   const [ward, setWard] = useState('all');
@@ -26,8 +27,13 @@ export default function PredictionsPage() {
   return (
     <div className={styles.page}>
       <div className={styles.header}>
-        <h1 className={styles.title}><TrendingUp size={28} /> Predictions</h1>
-        <p className={styles.subtitle}>AI-powered forecasts with confidence intervals for smarter planning.</p>
+        <h1 className={styles.title} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <TrendingUp size={28} style={{ flexShrink: 0 }} /> 
+          <Typewriter text="Predictions" speed={40} />
+        </h1>
+        <p className={styles.subtitle}>
+          <Typewriter text="AI-powered forecasts with confidence intervals for smarter planning." speed={15} delay={400} showCursor={false} />
+        </p>
       </div>
 
       <div className={styles.grid}>
