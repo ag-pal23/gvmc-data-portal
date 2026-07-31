@@ -8,12 +8,13 @@ import styles from './page.module.css';
 import Typewriter from '@/components/atoms/Typewriter/Typewriter';
 
 const promptSuggestions = [
+  "How many floors can I build on soft red soil in Madhurawada?",
+  "Analyze soil oxygen levels and bearing capacity for Beach Road plot",
   "What is the water supply trend in Ward 12 this month?",
   "How many grievances were filed this week?",
   "Compare AQI across all zones for July 2026",
   "Show me datasets related to water",
   "Predict traffic congestion for tomorrow",
-  "Which ward has the best air quality?",
 ];
 
 interface Message {

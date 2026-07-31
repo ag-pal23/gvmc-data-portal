@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import {
   LayoutDashboard, Database, Map, BarChart3, TrendingUp,
   Sparkles, Code2, BookOpen, Shield, User, Search,
-  Menu, X, Home, MoreHorizontal, Sun, Moon, Rocket, FlaskConical
+  Menu, X, Home, MoreHorizontal, Sun, Moon, Rocket, FlaskConical, Layers
 } from 'lucide-react';
 import styles from './NavBar.module.css';
 
@@ -16,6 +16,7 @@ const mainNavItems = [
   { path: '/map', label: 'Map', icon: Map },
   { path: '/analytics', label: 'Analytics', icon: BarChart3 },
   { path: '/predictions', label: 'Predictions', icon: TrendingUp },
+  { path: '/soil-advisor', label: 'Soil Advisor', icon: Layers },
 ];
 
 const moreNavItems = [
