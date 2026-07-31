@@ -1,15 +1,13 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { Search, Database, Clock, Download, FileText } from 'lucide-react';
-import { datasets } from '@/data/mock';
+import { type Dataset, datasets as mockDatasets } from '@/data/mock';
 import styles from './page.module.css';
 import Typewriter from '@/components/atoms/Typewriter/Typewriter';
 
-const categories = [...new Set(datasets.map(d => d.category))];
 const formats = ['CSV', 'JSON', 'GeoJSON', 'API'];
-const frequencies = ['hourly', 'daily', 'weekly', 'monthly', 'quarterly', 'static'];
 
 function formatBadgeClass(format: string) {
   const map: Record<string, string> = {
@@ -35,12 +33,37 @@ function timeAgo(dateStr: string) {
 }
 
 export default function DatasetsPage() {
+  const [datasetsList, setDatasetsList] = useState<Dataset[]>([]);
   const [search, setSearch] = useState('');
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedFormats, setSelectedFormats] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function loadDatasets() {
+      try {
+        const res = await fetch('/api/datasets');
+        if (res.ok) {
+          const body = await res.json();
+          setDatasetsList(body.data);
+        } else {
+          setDatasetsList(mockDatasets);
+        }
+      } catch (err) {
+        setDatasetsList(mockDatasets);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadDatasets();
+  }, []);
+
+  const categories = useMemo(() => {
+    return [...new Set(datasetsList.map(d => d.category))];
+  }, [datasetsList]);
 
   const filtered = useMemo(() => {
-    return datasets.filter(d => {
+    return datasetsList.filter(d => {
       const matchesSearch = !search ||
         d.title.toLowerCase().includes(search.toLowerCase()) ||
         d.description.toLowerCase().includes(search.toLowerCase()) ||
@@ -49,7 +72,7 @@ export default function DatasetsPage() {
       const matchesFmt = selectedFormats.length === 0 || d.format.some(f => selectedFormats.includes(f));
       return matchesSearch && matchesCat && matchesFmt;
     });
-  }, [search, selectedCategories, selectedFormats]);
+  }, [datasetsList, search, selectedCategories, selectedFormats]);
 
   const toggleFilter = (value: string, list: string[], setter: React.Dispatch<React.SetStateAction<string[]>>) => {
     setter(prev => prev.includes(value) ? prev.filter(v => v !== value) : [...prev, value]);
@@ -62,7 +85,7 @@ export default function DatasetsPage() {
           <Typewriter text="Open Datasets" speed={40} />
         </h1>
         <p className={styles.subtitle}>
-          <Typewriter text={`Browse, search, and download ${datasets.length} civic datasets from Visakhapatnam.`} speed={15} delay={600} showCursor={false} />
+          <Typewriter text={`Browse, search, and download ${datasetsList.length} civic datasets from Visakhapatnam.`} speed={15} delay={600} showCursor={false} />
         </p>
       </div>
 
@@ -109,7 +132,7 @@ export default function DatasetsPage() {
         </aside>
 
         <div className={styles.results}>
-          <p className={styles.resultCount}>Showing {filtered.length} of {datasets.length} datasets</p>
+          <p className={styles.resultCount}>Showing {filtered.length} of {datasetsList.length} datasets</p>
           {filtered.map(ds => (
             <Link key={ds.dataset_id} href={`/datasets/${ds.dataset_id}`} className={styles.card}>
               <div className={styles.cardTitle}>

@@ -36,7 +36,7 @@ export default function AssistantPage() {
     }
   }, [messages, isTyping]);
 
-  const handleSend = (text?: string) => {
+  const handleSend = async (text?: string) => {
     const question = text || input.trim();
     if (!question) return;
 
@@ -44,8 +44,25 @@ export default function AssistantPage() {
     setMessages(prev => [...prev, { role: 'user', content: question }]);
     setIsTyping(true);
 
-    // Simulate AI response
-    setTimeout(() => {
+    try {
+      const res = await fetch('/api/assistant/query', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question })
+      });
+      if (res.ok) {
+        const body = await res.json();
+        const response: AIResponse = body.data;
+        setMessages(prev => [...prev, {
+          role: 'assistant',
+          content: response.answer,
+          response,
+        }]);
+      } else {
+        throw new Error('API request failed');
+      }
+    } catch (err) {
+      // Fallback
       const matched = aiResponses.find(
         r => r.question.toLowerCase() === question.toLowerCase()
       );
@@ -58,14 +75,14 @@ export default function AssistantPage() {
           { dataset_id: "ds-grievance-001", title: "Citizen Grievances", updated: "4h ago" },
         ],
       };
-
       setMessages(prev => [...prev, {
         role: 'assistant',
         content: response.answer,
         response,
       }]);
+    } finally {
       setIsTyping(false);
-    }, 1200 + Math.random() * 800);
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {

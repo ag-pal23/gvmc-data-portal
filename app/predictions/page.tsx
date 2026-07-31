@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { TrendingUp, Info } from 'lucide-react';
 import { generateTrafficForecast } from '@/data/mock';
 import styles from './page.module.css';
@@ -10,19 +10,37 @@ export default function PredictionsPage() {
   const [ward, setWard] = useState('all');
   const [horizon, setHorizon] = useState('24h');
   const [showTable, setShowTable] = useState(false);
+  const [forecastData, setForecastData] = useState<any[]>(generateTrafficForecast());
+  const [modelInfo, setModelInfo] = useState({ accuracy: '94.2%', algorithm: 'LSTM + Weather' });
 
-  const forecastData = useMemo(() => generateTrafficForecast(), []);
-  const forecastOnly = forecastData.filter(d => d.type === 'forecast');
-  const allValues = forecastData.map(d => d.upper || d.value);
-  const allLower = forecastData.map(d => d.lower || d.value);
-  const maxVal = Math.max(...allValues) + 5;
-  const minVal = Math.min(...allLower) - 5;
-  const range = maxVal - minVal;
+  useEffect(() => {
+    async function loadPredictions() {
+      try {
+        const res = await fetch(`/api/predictions?ward=${ward}&horizon=${horizon}`);
+        if (res.ok) {
+          const body = await res.json();
+          setForecastData(body.data.forecast);
+          setModelInfo({ accuracy: body.data.accuracy, algorithm: body.data.algorithm });
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    }
+    loadPredictions();
+  }, [ward, horizon]);
+
+  const forecastOnly = useMemo(() => forecastData.filter(d => d.type === 'forecast'), [forecastData]);
+  const allValues = useMemo(() => forecastData.map(d => d.upper || d.value), [forecastData]);
+  const allLower = useMemo(() => forecastData.map(d => d.lower || d.value), [forecastData]);
+  
+  const maxVal = useMemo(() => Math.max(...allValues) + 5, [allValues]);
+  const minVal = useMemo(() => Math.min(...allLower) - 5, [allLower]);
+  const range = useMemo(() => maxVal - minVal, [maxVal, minVal]);
 
   const toY = (v: number) => 280 - ((v - minVal) / range) * 260 - 10;
   const toX = (i: number) => (i / (forecastData.length - 1)) * 880 + 10;
 
-  const todayIdx = forecastData.findIndex(d => d.type === 'forecast');
+  const todayIdx = useMemo(() => forecastData.findIndex(d => d.type === 'forecast'), [forecastData]);
 
   return (
     <div className={styles.page}>
@@ -175,8 +193,8 @@ export default function PredictionsPage() {
 
           <div className={styles.sideCard}>
             <h3 className={styles.sideCardTitle}>Model Information</h3>
-            <div className={styles.infoRow}><span className={styles.infoLabel}>Algorithm</span><span className={styles.infoValue}>LSTM + Weather</span></div>
-            <div className={styles.infoRow}><span className={styles.infoLabel}>Accuracy</span><span className={styles.accuracyBadge}>94.2%</span></div>
+            <div className={styles.infoRow}><span className={styles.infoLabel}>Algorithm</span><span className={styles.infoValue}>{modelInfo.algorithm}</span></div>
+            <div className={styles.infoRow}><span className={styles.infoLabel}>Accuracy</span><span className={styles.accuracyBadge}>{modelInfo.accuracy}</span></div>
             <div className={styles.infoRow}><span className={styles.infoLabel}>MAE</span><span className={styles.infoValue}>3.8 pts</span></div>
             <div className={styles.infoRow}><span className={styles.infoLabel}>RMSE</span><span className={styles.infoValue}>5.2 pts</span></div>
             <div className={styles.infoRow}><span className={styles.infoLabel}>Training Data</span><span className={styles.infoValue}>90 days</span></div>

@@ -1,15 +1,16 @@
 import Link from 'next/link';
 import { ArrowLeft, Download, Code2, Bookmark, Clock, FileText, Building2, Scale } from 'lucide-react';
-import { datasets } from '@/data/mock';
+import { getDatasetById, getDatasets } from '@/lib/data-service';
 import styles from './page.module.css';
 
-export function generateStaticParams() {
-  return datasets.map((ds) => ({ id: ds.dataset_id }));
+export async function generateStaticParams() {
+  const res = await getDatasets();
+  return res.data.map((ds) => ({ id: ds.dataset_id }));
 }
 
 export default async function DatasetDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const ds = datasets.find(d => d.dataset_id === id);
+  const { data: ds } = await getDatasetById(id);
 
   if (!ds) {
     return (

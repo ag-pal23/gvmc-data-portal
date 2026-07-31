@@ -1,25 +1,77 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BarChart3, TrendingUp, Download, Droplets, Wind, MessageSquareWarning, IndianRupee } from 'lucide-react';
-import { generateWaterSupplyData, revenueByZone, grievancesByCategory } from '@/data/mock';
+import { generateWaterSupplyData, revenueByZone as mockRevenue, grievancesByCategory as mockGrievances } from '@/data/mock';
 import styles from './page.module.css';
 import Typewriter from '@/components/atoms/Typewriter/Typewriter';
 
-const waterData = generateWaterSupplyData();
-const kpis = [
-  { label: 'Avg Water Supply', value: '96.1%', icon: <Droplets size={20} />, color: '#0E9F6E', trend: '+2.1%' },
-  { label: 'Avg AQI', value: '72', icon: <Wind size={20} />, color: '#F59E0B', trend: '-5 pts' },
-  { label: 'Open Grievances', value: '1,204', icon: <MessageSquareWarning size={20} />, color: '#DC2626', trend: '+12%' },
-  { label: 'Tax Collected (YTD)', value: '₹42.3Cr', icon: <IndianRupee size={20} />, color: '#0B5FFF', trend: '+8.5%' },
-];
+const iconMap: Record<string, React.ReactNode> = {
+  'Avg Water Supply': <Droplets size={20} />,
+  'Avg AQI': <Wind size={20} />,
+  'Open Grievances': <MessageSquareWarning size={20} />,
+  'Tax Collected (YTD)': <IndianRupee size={20} />
+};
 
 export default function AnalyticsPage() {
+  const [waterData, setWaterData] = useState<any[]>([]);
+  const [revenueByZone, setRevenueByZone] = useState<any[]>([]);
+  const [grievancesByCategory, setGrievancesByCategory] = useState<any[]>([]);
+  const [kpisList, setKpisList] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
   const [showTable, setShowTable] = useState<string | null>(null);
-  const maxSupply = Math.max(...waterData.map(d => d.supply_pct));
-  const minSupply = Math.min(...waterData.map(d => d.supply_pct));
-  const maxRevenue = Math.max(...revenueByZone.map(d => Math.max(d.target, d.collected)));
-  const totalGrievances = grievancesByCategory.reduce((s, g) => s + g.count, 0);
+
+  useEffect(() => {
+    async function loadAnalytics() {
+      try {
+        const res = await fetch('/api/analytics');
+        if (res.ok) {
+          const body = await res.json();
+          const { waterSupplyTrend, revenueByZone: rev, grievancesByCategory: gv, kpis } = body.data;
+          setWaterData(waterSupplyTrend || []);
+          setRevenueByZone(rev || []);
+          setGrievancesByCategory(gv || []);
+          setKpisList(kpis || []);
+        } else {
+          setWaterData(generateWaterSupplyData());
+          setRevenueByZone(mockRevenue);
+          setGrievancesByCategory(mockGrievances);
+          setKpisList([
+            { label: 'Avg Water Supply', value: '96.1%', color: '#0E9F6E', trend: '+2.1%' },
+            { label: 'Avg AQI', value: '72', color: '#F59E0B', trend: '-5 pts' },
+            { label: 'Open Grievances', value: '1,204', color: '#DC2626', trend: '+12%' },
+            { label: 'Tax Collected (YTD)', value: '₹42.3Cr', color: '#0B5FFF', trend: '+8.5%' },
+          ]);
+        }
+      } catch (err) {
+        setWaterData(generateWaterSupplyData());
+        setRevenueByZone(mockRevenue);
+        setGrievancesByCategory(mockGrievances);
+        setKpisList([
+          { label: 'Avg Water Supply', value: '96.1%', color: '#0E9F6E', trend: '+2.1%' },
+          { label: 'Avg AQI', value: '72', color: '#F59E0B', trend: '-5 pts' },
+          { label: 'Open Grievances', value: '1,204', color: '#DC2626', trend: '+12%' },
+          { label: 'Tax Collected (YTD)', value: '₹42.3Cr', color: '#0B5FFF', trend: '+8.5%' },
+        ]);
+      } finally {
+        setLoading(false);
+      }
+    }
+    loadAnalytics();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className={styles.page} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '60vh' }}>
+        <p>Loading analytics data...</p>
+      </div>
+    );
+  }
+
+  const maxSupply = waterData.length > 0 ? Math.max(...waterData.map(d => d.supply_pct)) : 100;
+  const minSupply = waterData.length > 0 ? Math.min(...waterData.map(d => d.supply_pct)) : 0;
+  const maxRevenue = revenueByZone.length > 0 ? Math.max(...revenueByZone.map(d => Math.max(d.target, d.collected))) : 100;
+  const totalGrievances = grievancesByCategory.length > 0 ? grievancesByCategory.reduce((s, g) => s + g.count, 0) : 0;
 
   return (
     <div className={styles.page}>
@@ -35,10 +87,10 @@ export default function AnalyticsPage() {
 
       {/* KPI Cards */}
       <div className={styles.kpiRow}>
-        {kpis.map(kpi => (
+        {kpisList.map(kpi => (
           <div key={kpi.label} className={styles.kpiCard}>
             <div className={styles.kpiIcon} style={{ background: kpi.color + '18', color: kpi.color }}>
-              {kpi.icon}
+              {iconMap[kpi.label] || <BarChart3 size={20} />}
             </div>
             <div>
               <div className={styles.kpiValue}>{kpi.value}</div>
