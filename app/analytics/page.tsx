@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { BarChart3, TrendingUp, Download, Droplets, Wind, MessageSquareWarning, IndianRupee } from 'lucide-react';
 import { generateWaterSupplyData, revenueByZone, grievancesByCategory } from '@/data/mock';
 import styles from './page.module.css';
+import Typewriter from '@/components/atoms/Typewriter/Typewriter';
 
 const waterData = generateWaterSupplyData();
 const kpis = [
@@ -23,8 +24,13 @@ export default function AnalyticsPage() {
   return (
     <div className={styles.page}>
       <div className={styles.header}>
-        <h1 className={styles.title}><BarChart3 size={28} /> Analytics Dashboard</h1>
-        <p className={styles.subtitle}>Explore trends and KPIs across Visakhapatnam&apos;s civic data.</p>
+        <h1 className={styles.title} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <BarChart3 size={28} style={{ flexShrink: 0 }} /> 
+          <Typewriter text="Analytics Dashboard" speed={40} />
+        </h1>
+        <p className={styles.subtitle}>
+          <Typewriter text="Explore trends and KPIs across Visakhapatnam's civic data." speed={15} delay={400} showCursor={false} />
+        </p>
       </div>
 
       {/* KPI Cards */}

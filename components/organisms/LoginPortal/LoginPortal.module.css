@@ -1,0 +1,296 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(4, 6, 12, 0.7);
+  backdrop-filter: blur(16px);
+  animation: fadeIn 0.4s ease forwards;
+}
+
+.card {
+  width: 100%;
+  max-width: 440px;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(11, 95, 255, 0.2);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 0 40px rgba(11, 95, 255, 0.15), inset 0 0 20px rgba(255, 255, 255, 0.03);
+  padding: var(--space-8);
+  color: white;
+  animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(11, 95, 255, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+
+.logoIcon {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #0B5FFF, #7C3AED);
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  margin-bottom: var(--space-3);
+  box-shadow: 0 0 16px rgba(11, 95, 255, 0.4);
+}
+
+.title {
+  font-size: var(--text-h2);
+  font-weight: var(--weight-bold);
+  margin-bottom: var(--space-1);
+}
+
+.subtitle {
+  font-size: var(--text-xs);
+  color: #9ca3af;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  color: #9ca3af;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.input {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  color: white;
+  font-size: var(--text-sm);
+  outline: none;
+  transition: all var(--transition-fast);
+}
+
+.input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(11, 95, 255, 0.25);
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.captchaRow {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  margin-top: 2px;
+}
+
+.captchaBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: repeating-linear-gradient(
+    45deg,
+    rgba(17, 24, 39, 0.9),
+    rgba(17, 24, 39, 0.9) 10px,
+    rgba(31, 41, 55, 0.9) 10px,
+    rgba(31, 41, 55, 0.9) 20px
+  );
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-md);
+  padding: 6px var(--space-3);
+  width: 140px;
+  height: 42px;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.captchaText {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: var(--weight-bold);
+  font-size: 20px;
+  letter-spacing: 3px;
+  color: #60a5fa;
+  font-style: italic;
+  text-shadow: 0 0 8px rgba(96, 165, 250, 0.5);
+  transform: skewX(-10deg);
+}
+
+.captchaRefresh {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.captchaRefresh:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+}
+
+.submitBtn {
+  background: var(--color-primary);
+  border: none;
+  color: white;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: var(--color-primary-dark);
+  box-shadow: 0 0 16px rgba(11, 95, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+.submitBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.error {
+  font-size: var(--text-xs);
+  color: #f87171;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* OTP Step Styles */
+.otpInstructions {
+  font-size: var(--text-sm);
+  color: #9ca3af;
+  text-align: center;
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--space-6);
+}
+
+.otpRow {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+
+.otpInput {
+  width: 50px;
+  height: 50px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-md);
+  color: white;
+  font-size: 20px;
+  font-weight: var(--weight-bold);
+  text-align: center;
+  outline: none;
+  transition: all var(--transition-fast);
+}
+
+.otpInput:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(11, 95, 255, 0.25);
+  background: rgba(15, 23, 42, 0.8);
+}
+
+.otpTimerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: var(--text-xs);
+  color: #9ca3af;
+  margin-bottom: var(--space-4);
+}
+
+.resendBtn {
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  cursor: pointer;
+  padding: 0;
+  font-weight: var(--weight-semibold);
+}
+
+.resendBtn:disabled {
+  color: #4b5563;
+  cursor: not-allowed;
+}
+
+.backBtn {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #9ca3af;
+  padding: 10px;
+  border-radius: var(--radius-md);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  text-align: center;
+  margin-top: var(--space-2);
+}
+
+.backBtn:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: white;
+}
+
+.mockBanner {
+  background: rgba(11, 95, 255, 0.1);
+  border: 1px dashed rgba(11, 95, 255, 0.3);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-4);
+  font-size: var(--text-xs);
+  color: #60a5fa;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}

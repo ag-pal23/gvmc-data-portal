@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import NavBar from "@/components/organisms/NavBar/NavBar";
+import GVMCWatermark from "@/components/atoms/GVMCWatermark/GVMCWatermark";
 
 export const metadata: Metadata = {
   title: "GVMC Open Data Intelligence Platform",
@@ -16,10 +17,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <GVMCWatermark />
         <NavBar />
         <main id="main-content">
           {children}
         </main>
+        <footer className="site-footer">
+          <div className="container">
+            GVMC – Official Government Portal
+          </div>
+        </footer>
       </body>
     </html>
   );

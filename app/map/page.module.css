@@ -61,3 +61,44 @@
   .popup { bottom: auto; top: var(--space-4); right: var(--space-4); left: var(--space-4); width: auto; }
   .legend { display: none; }
 }
+
+/* Sleek 2D/3D toggle button at the top-right */
+.viewToggle {
+  position: absolute; top: var(--space-4); right: 120px; z-index: 10;
+  display: flex; background: var(--color-bg); border: 1px solid var(--color-border);
+  border-radius: var(--radius-md); padding: 2px; box-shadow: var(--shadow-sm);
+}
+.toggleBtn {
+  background: none; border: none; border-radius: var(--radius-sm);
+  padding: 6px 12px; font-size: var(--text-xs); font-weight: var(--weight-semibold);
+  cursor: pointer; transition: all var(--transition-fast); color: var(--color-text-muted);
+}
+.toggleBtn:hover {
+  color: var(--color-text);
+}
+.toggleBtnActive {
+  background: var(--color-primary); color: white !important;
+}
+
+/* 3D controls panel overlay */
+.controls3dPanel {
+  position: absolute; bottom: var(--space-4); left: 290px; z-index: 10;
+  background: rgba(9, 13, 22, 0.85); backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1); border-radius: var(--radius-lg);
+  padding: var(--space-4); width: 220px; box-shadow: var(--shadow-lg); color: white;
+  display: flex; flex-direction: column; gap: var(--space-3);
+  font-size: var(--text-xs);
+}
+.controls3dTitle { font-weight: var(--weight-bold); border-bottom: 1px solid rgba(255, 255, 255, 0.15); padding-bottom: var(--space-2); margin-bottom: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+.controlRow { display: flex; flex-direction: column; gap: 4px; }
+.controlLabel { color: #9ca3af; display: flex; justify-content: space-between; }
+.controlRow input[type="range"] { accent-color: var(--color-primary); width: 100%; cursor: pointer; }
+.controlRowCheckbox { display: flex; align-items: center; gap: var(--space-2); cursor: pointer; }
+.controlRowCheckbox input { cursor: pointer; }
+.helpText { font-size: 10px; color: #6b7280; line-height: 1.4; border-top: 1px solid rgba(255, 255, 255, 0.15); padding-top: var(--space-2); margin-top: 2px; }
+
+@media (max-width: 767px) {
+  .viewToggle { right: auto; left: var(--space-4); top: 12px; }
+  .controls3dPanel { left: var(--space-4); bottom: 120px; width: calc(100% - 32px); }
+}
+

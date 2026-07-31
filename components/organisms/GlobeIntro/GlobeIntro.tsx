@@ -133,31 +133,32 @@ export default function GlobeIntro({ onEnter, paused = false }: GlobeIntroProps)
     scene.add(new THREE.Points(starGeo, starMat));
 
     // Lights
-    scene.add(new THREE.AmbientLight(0x404040, 1.4));
-    const sun = new THREE.DirectionalLight(0xffffff, 1.2);
+    scene.add(new THREE.AmbientLight(0xffffff, 0.7)); // Brighten ambient lighting
+    const sun = new THREE.DirectionalLight(0xffffff, 1.4);
     sun.position.set(5, 3, 5);
     scene.add(sun);
 
     // Texture Loader
     const textureLoader = new THREE.TextureLoader();
+    textureLoader.setCrossOrigin('anonymous'); // Fix CORS blocking
 
     // Earth
     const earthMat = new THREE.MeshStandardMaterial({
       map: textureLoader.load('https://unpkg.com/three-globe/example/img/earth-blue-marble.jpg'),
-      bumpMap: textureLoader.load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_normal_2048.jpg'),
-      bumpScale: 0.05,
-      roughnessMap: textureLoader.load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_specular_2048.jpg'),
-      roughness: 0.9,
-      metalness: 0.1,
+      bumpMap: textureLoader.load('https://unpkg.com/three-globe/example/img/earth-topology.png'), // Proper grayscale bumpmap
+      bumpScale: 0.015,
+      roughnessMap: textureLoader.load('https://unpkg.com/three-globe/example/img/earth-water.png'), // Specular water map
+      roughness: 0.85,
+      metalness: 0.15,
     });
     const earth = new THREE.Mesh(new THREE.SphereGeometry(GLOBE_RADIUS, 96, 96), earthMat);
     scene.add(earth);
 
     // Clouds
     const cloudMat = new THREE.MeshStandardMaterial({
-      alphaMap: textureLoader.load('https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_clouds_1024.png'),
+      alphaMap: textureLoader.load('https://unpkg.com/three-globe/example/img/earth-clouds.png'), // Reliable unpkg clouds
       transparent: true,
-      opacity: 0.35,
+      opacity: 0.3,
       depthWrite: false,
       blending: THREE.NormalBlending
     });
@@ -209,6 +210,17 @@ export default function GlobeIntro({ onEnter, paused = false }: GlobeIntroProps)
       const endFov = toTarget.fov;
       const startTime = performance.now();
 
+      // Smoothly rotate the Earth to the nearest base coordinates (multiple of 2*PI)
+      const startEarthRot = earth.rotation.y;
+      const targetEarthRot = idleAutoRotate
+        ? startEarthRot
+        : Math.round(startEarthRot / (2 * Math.PI)) * (2 * Math.PI);
+
+      const startCloudsRot = clouds.rotation.y;
+      const targetCloudsRot = idleAutoRotate
+        ? startCloudsRot
+        : Math.round(startCloudsRot / (2 * Math.PI)) * (2 * Math.PI);
+
       const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const duration = reduceMotion ? Math.min(200, durationMs) : durationMs;
 
@@ -219,6 +231,11 @@ export default function GlobeIntro({ onEnter, paused = false }: GlobeIntroProps)
         camera.fov = THREE.MathUtils.lerp(startFov, endFov, eased);
         camera.lookAt(0, 0, 0);
         camera.updateProjectionMatrix();
+
+        if (!idleAutoRotate) {
+          earth.rotation.y = THREE.MathUtils.lerp(startEarthRot, targetEarthRot, eased);
+          clouds.rotation.y = THREE.MathUtils.lerp(startCloudsRot, targetCloudsRot, eased);
+        }
 
         if (t < 1) {
           requestAnimationFrame(step);

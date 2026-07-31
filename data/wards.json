@@ -4,82 +4,82 @@
     {
       "type": "Feature",
       "properties": { "ward_id": 1, "name": "Gajuwaka", "zone": "North", "population": 42000, "water_pct": 92, "aqi": 68, "grievances": 45 },
-      "geometry": { "type": "Polygon", "coordinates": [[[83.18, 17.72], [83.20, 17.72], [83.20, 17.74], [83.18, 17.74], [83.18, 17.72]]] }
+      "geometry": { "type": "Polygon", "coordinates": [[[83.19, 17.68], [83.22, 17.68], [83.22, 17.71], [83.19, 17.71], [83.19, 17.68]]] }
     },
     {
       "type": "Feature",
       "properties": { "ward_id": 5, "name": "Gajuwaka South", "zone": "North", "population": 38000, "water_pct": 88, "aqi": 72, "grievances": 89 },
-      "geometry": { "type": "Polygon", "coordinates": [[[83.20, 17.72], [83.22, 17.72], [83.22, 17.74], [83.20, 17.74], [83.20, 17.72]]] }
+      "geometry": { "type": "Polygon", "coordinates": [[[83.19, 17.65], [83.22, 17.65], [83.22, 17.68], [83.19, 17.68], [83.19, 17.65]]] }
     },
     {
       "type": "Feature",
       "properties": { "ward_id": 8, "name": "Pedagantyada", "zone": "North", "population": 35000, "water_pct": 95, "aqi": 58, "grievances": 32 },
-      "geometry": { "type": "Polygon", "coordinates": [[[83.22, 17.72], [83.24, 17.72], [83.24, 17.74], [83.22, 17.74], [83.22, 17.72]]] }
+      "geometry": { "type": "Polygon", "coordinates": [[[83.22, 17.65], [83.25, 17.65], [83.25, 17.68], [83.22, 17.68], [83.22, 17.65]]] }
     },
     {
       "type": "Feature",
       "properties": { "ward_id": 12, "name": "Maharanipeta", "zone": "Central", "population": 29000, "water_pct": 98, "aqi": 55, "grievances": 28 },
-      "geometry": { "type": "Polygon", "coordinates": [[[83.28, 17.70], [83.30, 17.70], [83.30, 17.72], [83.28, 17.72], [83.28, 17.70]]] }
+      "geometry": { "type": "Polygon", "coordinates": [[[83.28, 17.69], [83.30, 17.69], [83.30, 17.71], [83.28, 17.71], [83.28, 17.69]]] }
     },
     {
       "type": "Feature",
       "properties": { "ward_id": 15, "name": "Dondaparthy", "zone": "Central", "population": 31000, "water_pct": 96, "aqi": 52, "grievances": 35 },
-      "geometry": { "type": "Polygon", "coordinates": [[[83.30, 17.70], [83.32, 17.70], [83.32, 17.72], [83.30, 17.72], [83.30, 17.70]]] }
+      "geometry": { "type": "Polygon", "coordinates": [[[83.27, 17.71], [83.30, 17.71], [83.30, 17.73], [83.27, 17.73], [83.27, 17.71]]] }
     },
     {
       "type": "Feature",
       "properties": { "ward_id": 18, "name": "Seethammadhara", "zone": "Central", "population": 45000, "water_pct": 94, "aqi": 62, "grievances": 72 },
-      "geometry": { "type": "Polygon", "coordinates": [[[83.32, 17.70], [83.34, 17.70], [83.34, 17.72], [83.32, 17.72], [83.32, 17.70]]] }
+      "geometry": { "type": "Polygon", "coordinates": [[[83.29, 17.74], [83.32, 17.74], [83.32, 17.76], [83.29, 17.76], [83.29, 17.74]]] }
     },
     {
       "type": "Feature",
       "properties": { "ward_id": 22, "name": "MVP Colony", "zone": "Central", "population": 33000, "water_pct": 97, "aqi": 48, "grievances": 22 },
-      "geometry": { "type": "Polygon", "coordinates": [[[83.30, 17.72], [83.32, 17.72], [83.32, 17.74], [83.30, 17.74], [83.30, 17.72]]] }
+      "geometry": { "type": "Polygon", "coordinates": [[[83.32, 17.73], [83.34, 17.73], [83.34, 17.75], [83.32, 17.75], [83.32, 17.73]]] }
     },
     {
       "type": "Feature",
       "properties": { "ward_id": 25, "name": "Akkayyapalem", "zone": "South", "population": 27000, "water_pct": 91, "aqi": 65, "grievances": 41 },
-      "geometry": { "type": "Polygon", "coordinates": [[[83.28, 17.68], [83.30, 17.68], [83.30, 17.70], [83.28, 17.70], [83.28, 17.68]]] }
+      "geometry": { "type": "Polygon", "coordinates": [[[83.27, 17.72], [83.29, 17.72], [83.29, 17.74], [83.27, 17.74], [83.27, 17.72]]] }
     },
     {
       "type": "Feature",
       "properties": { "ward_id": 30, "name": "RK Beach", "zone": "Beach", "population": 22000, "water_pct": 99, "aqi": 42, "grievances": 18 },
-      "geometry": { "type": "Polygon", "coordinates": [[[83.32, 17.68], [83.34, 17.68], [83.34, 17.70], [83.32, 17.70], [83.32, 17.68]]] }
+      "geometry": { "type": "Polygon", "coordinates": [[[83.31, 17.70], [83.33, 17.70], [83.33, 17.72], [83.31, 17.72], [83.31, 17.70]]] }
     },
     {
       "type": "Feature",
       "properties": { "ward_id": 35, "name": "Siripuram", "zone": "Beach", "population": 24000, "water_pct": 97, "aqi": 45, "grievances": 15 },
-      "geometry": { "type": "Polygon", "coordinates": [[[83.34, 17.68], [83.36, 17.68], [83.36, 17.70], [83.34, 17.70], [83.34, 17.68]]] }
+      "geometry": { "type": "Polygon", "coordinates": [[[83.30, 17.71], [83.32, 17.71], [83.32, 17.73], [83.30, 17.73], [83.30, 17.71]]] }
     },
     {
       "type": "Feature",
       "properties": { "ward_id": 40, "name": "Maddilapalem", "zone": "West", "population": 36000, "water_pct": 90, "aqi": 78, "grievances": 55 },
-      "geometry": { "type": "Polygon", "coordinates": [[[83.24, 17.72], [83.26, 17.72], [83.26, 17.74], [83.24, 17.74], [83.24, 17.72]]] }
+      "geometry": { "type": "Polygon", "coordinates": [[[83.30, 17.73], [83.32, 17.73], [83.32, 17.75], [83.30, 17.75], [83.30, 17.73]]] }
     },
     {
       "type": "Feature",
       "properties": { "ward_id": 45, "name": "Kancharapalem", "zone": "West", "population": 40000, "water_pct": 87, "aqi": 82, "grievances": 65 },
-      "geometry": { "type": "Polygon", "coordinates": [[[83.26, 17.72], [83.28, 17.72], [83.28, 17.74], [83.26, 17.74], [83.26, 17.72]]] }
+      "geometry": { "type": "Polygon", "coordinates": [[[83.25, 17.71], [83.28, 17.71], [83.28, 17.74], [83.25, 17.74], [83.25, 17.71]]] }
     },
     {
       "type": "Feature",
       "properties": { "ward_id": 50, "name": "NAD Junction", "zone": "Industrial", "population": 32000, "water_pct": 85, "aqi": 112, "grievances": 48 },
-      "geometry": { "type": "Polygon", "coordinates": [[[83.20, 17.74], [83.22, 17.74], [83.22, 17.76], [83.20, 17.76], [83.20, 17.74]]] }
+      "geometry": { "type": "Polygon", "coordinates": [[[83.22, 17.71], [83.25, 17.71], [83.25, 17.74], [83.22, 17.74], [83.22, 17.71]]] }
     },
     {
       "type": "Feature",
       "properties": { "ward_id": 55, "name": "Aganampudi", "zone": "Industrial", "population": 28000, "water_pct": 83, "aqi": 105, "grievances": 52 },
-      "geometry": { "type": "Polygon", "coordinates": [[[83.18, 17.74], [83.20, 17.74], [83.20, 17.76], [83.18, 17.76], [83.18, 17.74]]] }
+      "geometry": { "type": "Polygon", "coordinates": [[[83.17, 17.67], [83.19, 17.67], [83.19, 17.69], [83.17, 17.69], [83.17, 17.67]]] }
     },
     {
       "type": "Feature",
       "properties": { "ward_id": 60, "name": "Pendurthi", "zone": "North", "population": 50000, "water_pct": 89, "aqi": 70, "grievances": 62 },
-      "geometry": { "type": "Polygon", "coordinates": [[[83.22, 17.74], [83.24, 17.74], [83.24, 17.76], [83.22, 17.76], [83.22, 17.74]]] }
+      "geometry": { "type": "Polygon", "coordinates": [[[83.20, 17.76], [83.23, 17.76], [83.23, 17.79], [83.20, 17.79], [83.20, 17.76]]] }
     },
     {
       "type": "Feature",
       "properties": { "ward_id": 65, "name": "Yendada", "zone": "Beach", "population": 20000, "water_pct": 96, "aqi": 40, "grievances": 12 },
-      "geometry": { "type": "Polygon", "coordinates": [[[83.36, 17.70], [83.38, 17.70], [83.38, 17.72], [83.36, 17.72], [83.36, 17.70]]] }
+      "geometry": { "type": "Polygon", "coordinates": [[[83.34, 17.75], [83.37, 17.75], [83.37, 17.78], [83.34, 17.78], [83.34, 17.75]]] }
     }
   ]
 }

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Code2, Play, Copy, Check } from 'lucide-react';
 import { apiEndpoints } from '@/data/mock';
 import styles from './page.module.css';
+import Typewriter from '@/components/atoms/Typewriter/Typewriter';
 
 export default function APIHubPage() {
   const [activeIdx, setActiveIdx] = useState(0);
@@ -34,8 +35,13 @@ export default function APIHubPage() {
   return (
     <div className={styles.page}>
       <div className={styles.header}>
-        <h1 className={styles.title}><Code2 size={28} /> API Hub</h1>
-        <p className={styles.subtitle}>Integrate GVMC civic data directly into your applications.</p>
+        <h1 className={styles.title} style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+          <Code2 size={28} style={{ flexShrink: 0 }} /> 
+          <Typewriter text="API Hub" speed={40} />
+        </h1>
+        <p className={styles.subtitle}>
+          <Typewriter text="Integrate GVMC civic data directly into your applications." speed={15} delay={400} showCursor={false} />
+        </p>
       </div>
 
       <div className={styles.grid}>
