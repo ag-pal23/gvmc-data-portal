@@ -3,6 +3,7 @@
 import React, { useState, useCallback, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { Layers, X, Share2, BarChart3, Database, Table2 } from 'lucide-react';
+import * as THREE from 'three';
 import wardsData from '@/data/wards.json';
 import styles from './page.module.css';
 
