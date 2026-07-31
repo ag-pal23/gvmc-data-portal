@@ -1,0 +1,12 @@
+{
+  "name": "gvmc-db-setup",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Script to deploy GVMC schema to Supabase",
+  "scripts": {
+    "deploy": "node deploy_schema.js"
+  },
+  "dependencies": {
+    "pg": "^8.13.0"
+  }
+}

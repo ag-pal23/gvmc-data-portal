@@ -1,0 +1,31 @@
+{
+  "name": "gvmc-platform",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "echarts": "^6.1.0",
+    "echarts-for-react": "^3.0.6",
+    "lucide-react": "^1.28.0",
+    "maplibre-gl": "^6.0.0",
+    "next": "16.2.12",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "react-map-gl": "^8.1.2",
+    "three": "^0.185.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/three": "^0.185.1",
+    "eslint": "^9",
+    "eslint-config-next": "16.2.12",
+    "typescript": "^5"
+  }
+}
