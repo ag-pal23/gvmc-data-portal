@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import {
   Database, Map, Sparkles, BarChart3, TrendingUp, Code2,
-  ArrowRight
+  ArrowRight, Lightbulb
 } from 'lucide-react';
 import styles from './page.module.css';
 import GlobeIntro from '@/components/organisms/GlobeIntro/GlobeIntro';
@@ -60,6 +60,14 @@ const features = [
     title: 'API Hub',
     desc: 'Explore REST APIs, test endpoints live, generate code snippets, and manage API keys for integration.',
     href: '/api-hub',
+  },
+  {
+    icon: <Lightbulb size={24} />,
+    color: '#10B981',
+    bg: '#D1FAE5',
+    title: 'Startup Ideas',
+    desc: 'Explore curated, tier-based business and startup ideas powered by open data.',
+    href: '/ideas',
   },
 ];
 

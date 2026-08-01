@@ -6,7 +6,7 @@ import { usePathname } from 'next/navigation';
 import {
   LayoutDashboard, Database, Map, BarChart3, TrendingUp,
   Sparkles, Code2, BookOpen, Shield, User, Search,
-  Menu, X, Home, MoreHorizontal, Sun, Moon, Rocket, FlaskConical, Layers
+  Menu, X, Home, MoreHorizontal, Sun, Moon, Rocket, FlaskConical, Layers, Lightbulb
 } from 'lucide-react';
 import styles from './NavBar.module.css';
 
@@ -20,6 +20,7 @@ const mainNavItems = [
 ];
 
 const moreNavItems = [
+  { path: '/ideas', label: 'Startup Ideas', icon: Lightbulb },
   { path: '/startup-hub', label: 'Startup Hub', icon: Rocket },
   { path: '/research', label: 'Research', icon: FlaskConical },
   { path: '/api-hub', label: 'API Hub', icon: Code2 },
