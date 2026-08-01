@@ -1,7 +1,7 @@
-import { query, isDbConnected } from './db';
-import { datasets as mockDatasets, Dataset, generateWaterSupplyData, revenueByZone, grievancesByCategory, aiResponses, generateTrafficForecast } from '../data/mock';
-import { vizagSoilPresets, calculateSoilFeasibility, SoilProfile, SoilAnalysisResult } from '../data/soilData';
-import wardsData from '../data/wards.json';
+import { query, isDbConnected } from '../db';
+import { datasets as mockDatasets, Dataset, generateWaterSupplyData, revenueByZone, grievancesByCategory, aiResponses, generateTrafficForecast } from '../../data/mock';
+import { vizagSoilPresets, calculateSoilFeasibility, SoilProfile, SoilAnalysisResult } from '../../data/soilData';
+import wardsData from '../../data/wards.json';
 
 export interface DataServiceResponse<T> {
   data: T;

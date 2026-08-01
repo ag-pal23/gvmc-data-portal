@@ -1,11 +1,5 @@
-import { NextResponse } from 'next/server';
-import { getAnalyticsData } from '@/lib/data-service';
+import { handleGetAnalytics } from '@/backend/controllers/analyticsController';
 
 export async function GET(request: Request) {
-  try {
-    const result = await getAnalyticsData();
-    return NextResponse.json(result);
-  } catch (error: any) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
-  }
+  return handleGetAnalytics(request);
 }

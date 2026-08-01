@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { ArrowLeft, Download, Code2, Bookmark, Clock, FileText, Building2, Scale } from 'lucide-react';
-import { getDatasetById, getDatasets } from '@/lib/data-service';
+import { getDatasetById, getDatasets } from '@/backend/services/dataService';
 import styles from './page.module.css';
 
 export async function generateStaticParams() {
