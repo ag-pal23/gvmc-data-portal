@@ -90,10 +90,10 @@ export default function NavBar() {
           </nav>
 
           <div className={styles.actions}>
-            <button className={styles.searchBtn} aria-label="Search">
+            <button className={styles.searchBtn} aria-label="Search" suppressHydrationWarning>
               <Search size={20} />
             </button>
-            <button className={styles.themeBtn} aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'} onClick={toggleDark}>
+            <button className={styles.themeBtn} aria-label={darkMode ? 'Switch to light mode' : 'Switch to dark mode'} onClick={toggleDark} suppressHydrationWarning>
               {darkMode ? <Sun size={20} /> : <Moon size={20} />}
             </button>
             <Link href="/settings" className={styles.profileBtn} aria-label="Profile">

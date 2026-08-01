@@ -77,6 +77,7 @@ export default function SoilAdvisorPage() {
             key={preset.id}
             className={`${styles.presetBtn} ${selectedPresetId === preset.id ? styles.presetBtnActive : ''}`}
             onClick={() => handleSelectPreset(preset)}
+            suppressHydrationWarning
           >
             {preset.locationName}
           </button>
@@ -98,6 +99,7 @@ export default function SoilAdvisorPage() {
               className={styles.select}
               value={soilType}
               onChange={(e) => setSoilType(e.target.value as SoilProfile['soilType'])}
+              suppressHydrationWarning
             >
               <option value="Coastal Sand">Coastal Sand (Loose/Saline)</option>
               <option value="Hard Granite">Hard Granite (Bedrock)</option>
@@ -315,7 +317,7 @@ export default function SoilAdvisorPage() {
 
           {/* Actions & Export */}
           <div className={styles.actionsBar}>
-            <button className={styles.exportBtn} onClick={handlePrintReport}>
+            <button className={styles.exportBtn} onClick={handlePrintReport} suppressHydrationWarning>
               <Download size={18} /> Export Official Soil Assessment Report (PDF)
             </button>
           </div>
